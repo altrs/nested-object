@@ -5,6 +5,8 @@ A server is a special computer connected directly to the internet. Webpages are 
 
 Our computers are not servers, they are not connected directly to the internet. Instead, they are called clients. They are indirectly connected to the internet via an internet service provider (ISP).
 
+The internet is a network of networks that communicate with each other. Each individual network, called an autonomous system (as) is maintained by admin, and consists of routers, switches, servers, and other interconnected devices.
+
 Whenever email, webpage, picture, etc. travels across a network, computers break the information down into smaller pieces called 'packets.' When the packets reach its final destination, the packets are reassembled into the original order.
 
 Anywhere that two or more parts of the internet intersect, a router is used. Routers direct your packets around the internet. As you access something from the internet, you often use many routers in the process. Each time your packet accesses a router, that router puts a 'wrapper'/marking on the packet that signifies that this packet when through this specific router. When a packet is on the way back to your computer, the packet travels to each router it has been marked by in reverse order to get back to your computer.
@@ -53,8 +55,24 @@ The World Wide Web != the internet. The World Wide Web runs onto of the internet
 URL = uniform resource locator.
 HTTP = Hypertext transfer protocol
 
-Web browser: request pages of media and render the content that's returned. Sir Tim Berners-Lee created the first web browser. 
+Web browser: request pages of media and render the content that's returned. Sir Tim Berners-Lee created the first web browser.
 
+Search Engine was JumpStation by Jonathon Fletched from University of Sterling. 1) web crawler is a software that follows all the links it knows and whenever it finds a new link, it adds it to it's list. 2) Index records words found on the pages that the crawler visited. 3) A search algorithm that consulted the index. If 'cat' is searched, the algorithm find webpages that the term 'cat' was indexed. Websites that showed up first were the ones that said the indexed term the most.
+
+Google created a more sophisticated search algorithm by looking at how other websites linked to that page -- rather than judging it based on the actual web's content itself. This was originally called 'back rub' made in Stanford 1996 before becoming Google in 1998. 
+
+Another way of viewing the general structure and basic functionality of the internet can be through 3 main categories: 
+
+tier 1 networks: global networks. At the time this report was written, there are about 12. Their task is to forward packets settlement free to eachother. By connecting to 1 or more tier 1 networks, smaller subnets can reach the majority of the internet without needing a large amount of connections.
+
+Tier 2: regional networks. Also participate in the settlement free peering, but also purchase or sell peering from/to other networks. These are known as transit networks.
+
+Tier 3: local networks, operate exclusively by buying peering from high category networks.
+
+IXP: Internet exchange points, they connect ISP to each other.
+
+"Due to the fundamental principles of how the Internet is structured, it does not consist of a set group of
+networks, but rather a changing amount subnets joining, leaving, and constantly changing in size"
 
 Computers:
 The abacus: the first calculator. Used when the scale of society was greater than what a single person could keep track of. Abacus and other 'machines' made things easier, faster, accurate, lowered the barrier for entry while also amplifying our mental abilities. "Computer" used to refer to a person, rather than a machine.  When information is sent from one computer onto the ethernet, the packets have the recipients address in the header of the packet. Thus, only the computer with their MAC address in the header of packets, will receive the information. Other computer's ignore it.--> The general term for this approach is Carrier Sense Multiple Access (CSMA). The 'carrier' is any shared transmission medium that carriers data. In this case, it's the copper wire of the ethernet. For radios, it's the air carrying radio waves for wifi. 
