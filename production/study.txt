@@ -1,1 +1,64 @@
-Deeply Nested Object
+Deeply Nested Object : The Internet
+
+Overview: The internet is a wire in the ground. Computers connected to this wire can communicate.
+A server is a special computer connected directly to the internet. Webpages are files that are on that server's hard drive. Each server has a unique IP address (internet protocol). Because IP addresses are difficult to remember, we give them names (i.e. google).
+
+Our computers are not servers, they are not connected directly to the internet. Instead, they are called clients. They are indirectly connected to the internet via an internet service provider (ISP).
+
+Whenever email, webpage, picture, etc. travels across a network, computers break the information down into smaller pieces called 'packets.' When the packets reach its final destination, the packets are reassembled into the original order.
+
+Anywhere that two or more parts of the internet intersect, a router is used. Routers direct your packets around the internet. As you access something from the internet, you often use many routers in the process. Each time your packet accesses a router, that router puts a 'wrapper'/marking on the packet that signifies that this packet when through this specific router. When a packet is on the way back to your computer, the packet travels to each router it has been marked by in reverse order to get back to your computer.
+
+The first computer networks appeared in the 1950's and 60's, generally used in a company or research lab. Instead of having someone walk punch cards or rolls of magnetic tape (Sneakernet), networks were desired. This also allowed for all computers to share a printer, rather than needing each computer to have its own printer.
+
+LAN Technology: Local area networks. Ethernet being the most common method. With ethernet, all computers on a network are connected to an ethernet cable. To determine which computer packets being sent across the network were for, each computer on the LAN has a MAC: Media access control address. 
+
+LAN is connected to WAN : Wide area network. Likely to be a router run by your ISP. A regional router, which connects to an even bigger WAN for the city.
+
+The rate in which the carrier can transmit data is its bandwidth. Switches and exponential backoff are used to combat collisions on networks. --> The internet connects a bunch of smaller networks into one big one. Due to switches and the interconnectedness of the internet, different routes can be taken. A hop count and its limit  helps keep track + manage a packet's journey. Congestion control. Packet switching (it's also decentralized).
+
+IP regulates packets too. Packets consist of an IP Header and the data payload. The data payload consists of: UDP header (port number, checksum (allows data to be checked for correctness by adding up all the data. If not correct, the data has been corrupted), etc.) and then the actual data. UPD gets the packet to the right program on the computer. 
+
+Skype works on UDP: corrupted data packets are what may result in glitchy video. Emails however, should not use UDP as UDP does not check received status.
+
+TCP/IP Handles the issue of incoming packets out of order, and is an alternative to UDP. TCP packets consist of an IP header, TCP header, and the data. TCP packets are given sequential numbers. ACK (acknowledgment) is sent back to the sender from the receiver. If no ack is given, sender will send another packet. TCP also uses its ack information to adjust how aggressively it sends packets, helping packet congestion.
+
+When your computer connects to a website, you need two things: an IP address and a port number. 
+
+DNS handles ip names by consulting its server's large registry and replies to your computer with the correct IP address. If DNS succeeds in finding a IP name, your computer will then send a TCP request for the website's data.
+
+To make DNS more managable, we have a tree data structure. -->
+TLDs (Top level domains (.org, .gov. etc)). SLD (second level domains (google.___ dftba.____, etc)). And Sub Domains of parent (drive.google.com, images.google.com, etc.)).
+
+More than 300 million second level domain names exist. There are many DNS servers which are authority for different parts of the tree.
+
+Layers of the OSI Model (Open system interconnection):
+
+Physical Layer: electrical signals/ wireless signals, 
+
+Data link layer: MAC addresses,, collision detection, and other similar low-level protocols.
+
+Network layer: all switching and routing tech operates
+
+Transport layer: UDP and TCP.
+
+Session Layer: When UDP or TCP are used to open a connection, pass info back and forth and then close the session. 
+
+Presentation layer: 
+
+Application layer:
+
+The World Wide Web != the internet. The World Wide Web runs onto of the internet, similar to Skype or Minecraft. The internet is the underlying plumbing. The World Wide Web is just the biggest of them all: a huge distributed application running on millions of servers worldwide, accessed using a web browser. The World Wide Web is comprised of hyperlinks that lead to webpages.
+
+URL = uniform resource locator.
+HTTP = Hypertext transfer protocol
+
+Web browser: request pages of media and render the content that's returned. Sir Tim Berners-Lee created the first web browser. 
+
+
+Computers:
+The abacus: the first calculator. Used when the scale of society was greater than what a single person could keep track of. Abacus and other 'machines' made things easier, faster, accurate, lowered the barrier for entry while also amplifying our mental abilities. "Computer" used to refer to a person, rather than a machine.  When information is sent from one computer onto the ethernet, the packets have the recipients address in the header of the packet. Thus, only the computer with their MAC address in the header of packets, will receive the information. Other computer's ignore it.--> The general term for this approach is Carrier Sense Multiple Access (CSMA). The 'carrier' is any shared transmission medium that carriers data. In this case, it's the copper wire of the ethernet. For radios, it's the air carrying radio waves for wifi. 
+____________________________
+
+Ref:
+https://www.youtube.com/watch?v=7_LPdttKXPc
