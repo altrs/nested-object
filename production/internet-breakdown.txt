@@ -1,0 +1,62 @@
+Servers
+->IP address
+->Web Name
+->webpages
+
+Packets
+->Tracked Route
+->Hop Count
+->Hop Limit
+->IP Header
+->Data Payload
+->UDP or TCP/IP
+  ->UDP Header
+	->Intended application
+	->Port Number
+	->Checksum()
+  ->TCP/IP
+	->TCP Header
+	->Sequence number
+	->Data
+	->Acknowledgement()
+
+Computers (clients)
+->IP Address
+
+DNS Registry
+->DNS Servers
+  ->Top Level Domains
+  ->Second Level Domains
+  ->Sub Domains
+
+Internet Service Providers (ISP)
+->Wide Area Networks(Router run by ISP)
+->Local Area Networks
+  ->MAC address
+
+Internet-Layers (array of objects)
+->Physical layer
+->Data link layer
+->Network layer
+->Transport layer
+->Session layer
+->Presentation layer
+->Application layer
+
+//where does http belong here
+
+World-wide-web 
+->Webbrowsers
+  ->Hyperlinks
+	->URL
+	  ->URL has https or not
+  ->Webcrawler()
+
+Routers
+Switches
+Internet Exchange Points
+
+Check DNS Registry(domainName)
+Congestion-Control/Exponential backoff
+Decentralized Packet Switching
+Connect to website(IP address, Port number)
