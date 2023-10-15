@@ -1,7 +1,93 @@
-Servers
-->IP address
-->Web Name
-->webpages
+Data Schema : Internet
+_______________________
+
+internet_layers: array of strings
+internet_exchange_points: int
+switches: int
+servers: array of server objects
+routers: array of router objects
+computers: array of computer objects
+packets: array of packet objects
+users_worldwide: int
+amount_of_websites: int
+internet_birthday: string
+major_applications: array of strings (could be turned into objects)
+
+addServer: function
+server: object
+server.ip_address: string
+server.name: string
+server.webpages: array
+
+addRouter: function
+router: object
+router.name: string
+router.ports: object
+router.wan: array
+router.ethernet: array
+router.firewall: boolean
+router.wireless_access_point: boolean
+
+addComputer: function
+computer: object
+computer.ip_address: string
+computer.mac_address: string
+
+addPacketUDP: function
+addPacketUDP.packet: object
+addPacketUDP.packet.hop_count: int
+addPacketUDP.packet.hop_limit: int
+addPacketUDP.packet.traced_route: array of strings
+addPacketUDP.packet.ip_header: string
+addPacketUDP.packet.udp_header: object
+addPacketUDP.packet.udp_header.intended_application: string
+addPacketUDP.packet.udp_header.port_number: int
+addPacketUDP.packet.udp_header.checksum: int
+addPacketUDP.packet.checksum: function
+addPacketUDP.packet.data_payload: object
+
+addPacketTCP: function
+addPacketTCP.packet: object
+addPacketTCP.packet.hop_count: int
+addPacketTCP.packet.hop_limit: int
+addPacketTCP.packet.traced_route: array of strings
+addPacketTCP.packet.ip_header: string
+addPacketTCP.packet.tcp_header: object
+addPacketTCP.packet.tcp_header.intended_application: string
+addPacketTCP.packet.tcp_header.port_number: int
+addPacketTCP.packet.tcp_header.checksum: int
+addPacketTCP.packet.tcp_header.squence_num: int
+addPacketTCP.packet.tcp_header.ack: boolean
+addPacketTCP.packet.tcp_header.checksum: function
+addPacketTCP.packet.tcp_header.acknowledge: function
+addPacketTCP.packet..data_payload: object
+
+dns_registry: object
+dns_root_servers: int
+top_level_domains: array
+second_level_domains: array
+sub_domains: array
+addDomain: function
+
+world_wide_web: object
+web_browsers: array
+hyperlinks: object
+hyperlinks.address: string
+hyperlinks.url: string
+hyperlinks.https: boolean
+hyperlinks.http: boolean
+webcrawler: object
+webcrawler.knownsites: array
+webcrawler.index: array
+webcrawler: function
+
+check_DNS_registry: function
+connect_to_website: function
+
+Create your own internet concoction
+
+
+----------------------------------------------------------------------
 
 Packets
 ->Tracked Route
@@ -52,11 +138,10 @@ World-wide-web
 	  ->URL has https or not
   ->Webcrawler()
 
-Routers
 Switches
 Internet Exchange Points
 
-Check DNS Registry(domainName)
+Check DNS Registry(domainName): function
 Congestion-Control/Exponential backoff
 Decentralized Packet Switching
 Connect to website(IP address, Port number)

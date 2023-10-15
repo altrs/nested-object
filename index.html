@@ -1,16 +1,30 @@
+<!-- https://itnext.io/how-to-create-interactive-terminal-like-website-888bb0972288 -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>The Internet</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <title>InternetMaker 1.0</title>
   </head>
   <body>
-    <main>
-        <h1>The Internet</h1>  
-        <a href="js/script.js">Javascript</a>
-    </main>
-	<script src="js/script.js"></script>
+
+    <div id="createInternet">
+      <button onclick="show()">CREATE INTERNET</button>
+    </div>
+
+    <div id="main">
+      <div class="column">
+          <div class="inter" id="internet" onclick="loadRandomGif()"></div>
+          <div class="inter" id="output"><p id="outputText">this is output</p></div>
+      </div>
+      <div class="column">
+          <div class="inter" id="commandDiv"></div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
   </body>
 </html>

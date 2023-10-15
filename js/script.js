@@ -1,3 +1,70 @@
+// https://editor.p5js.org/jsy360/sketches/u5kNlGh0-
+
+function show() {
+    document.querySelectorAll('.inter').forEach(function(element) {element.style.display = "block";});
+    document.getElementById('createInternet').style.display = "none";
+}
+
+$('#commandDiv').terminal({
+
+  hello: function(what) {
+  	this.echo('Hello, ' + what + '. Welcome to this terminal.');
+  },
+
+  add: function(element){
+  	if(element == 'server'){
+  		this.echo('added server');
+  		loadRandomGif();
+  	}else{
+  		this.echo('what');
+  	}
+  },
+
+}, {greetings: 'Welcome. Type \'help\' for command list'});
+
+
+
+//GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS
+//GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS GIFS
+let url = 'https://api.giphy.com/v1/gifs/trending?api_key=QwkFrgMs6TNqKfabcO28qfSt94Pgnehv';
+let divWidth;
+let divHeight;
+
+function loadRandomGif() {
+    let divElement = document.getElementById('internet');
+    divWidth = divElement.offsetWidth;
+    divHeight = divElement.offsetHeight;
+
+    let gif = document.createElement('img');
+    getRandomGifSource((gifSrc) => {
+        gif.src = gifSrc;
+        gif.style.position = 'absolute';
+        gif.style.left = getRandomPosition(divWidth) + 'px';
+        gif.style.top = getRandomPosition(divHeight) + 'px';
+        gif.style.width = '30px';
+        gif.style.height = '30px';
+        divElement.appendChild(gif);
+    });
+}
+
+function getRandomGifSource(callback) {
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            let randomIndex = Math.floor(Math.random() * data.data.length);
+            let gifUrl = data.data[randomIndex].images.original.url.replace('&ct=g', '');
+            callback(gifUrl);
+        })
+        .catch((error) => {
+            console.error('Failed to fetch GIF data:', error);
+        });
+}
+
+function getRandomPosition(max) {return Math.floor(Math.random() * max);}
+
+
+//OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT
+//OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT
 const internet = {
 
 	internet_layers: ['Physical Layer', 'Data Link Layer', 'Network Layer', 'Transport Layer', 'Session Layer', 'Presentation Layer', 'Application Layer'],
