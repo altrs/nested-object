@@ -5,6 +5,7 @@ function show() {
     document.getElementById('createInternet').style.display = "none";
 }
 
+let serverOrganizer = false;
 
 $('#commandDiv').terminal({
 
@@ -20,6 +21,10 @@ $('#commandDiv').terminal({
   		this.echo('added web browser');
   		browserCreated = true;
   		createGifGrid();
+  		if(serverOrganizer == false){
+  			serverOrganizer = true;
+  			setInterval(createGifGrid, 3000);
+  		}
   	}
   	else{
   		this.echo('what');
@@ -100,8 +105,6 @@ function createGifGrid() {
         }
     }
 }
-
-//add interval funciton that runs createGifGrid every 3 seconds to add servers to grid.
 
 
 //OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT
