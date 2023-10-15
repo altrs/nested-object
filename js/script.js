@@ -5,6 +5,7 @@ function show() {
     document.getElementById('createInternet').style.display = "none";
 }
 
+
 $('#commandDiv').terminal({
 
   hello: function(what) {
@@ -17,6 +18,7 @@ $('#commandDiv').terminal({
   		loadRandomGif();
   	}else if(element == 'webbrowser'){
   		this.echo('added web browser');
+  		browserCreated = true;
   		createGifGrid();
   	}
   	else{
@@ -34,6 +36,7 @@ $('#commandDiv').terminal({
 let url = 'https://api.giphy.com/v1/gifs/trending?api_key=QwkFrgMs6TNqKfabcO28qfSt94Pgnehv';
 let divWidth;
 let divHeight;
+let browserCreated = false;
 
 function loadRandomGif() {
     let divElement = document.getElementById('internet');
@@ -97,6 +100,8 @@ function createGifGrid() {
         }
     }
 }
+
+//add interval funciton that runs createGifGrid every 3 seconds to add servers to grid.
 
 
 //OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT

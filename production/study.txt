@@ -100,7 +100,7 @@ add intranet (name) -- adds nothing, but updates counter
 internet name (name) -- changes default internet name
 internet showkey --shows an image of the diagram key
 internet status -- shows counter for: internet name, computers, routers, servers, current webbrowser showing, all webbrowsers, web crawlers, intranets.
-change webbrowser (browser name) -- changes webbrowser
+set webbrowser (browser name) -- changes webbrowser
 
 
 
