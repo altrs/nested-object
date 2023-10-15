@@ -11,14 +11,19 @@ $('#commandDiv').terminal({
   	this.echo('Hello, ' + what + '. Welcome to this terminal.');
   },
 
-  add: function(element){
+  add: function(element, name){
   	if(element == 'server'){
   		this.echo('added server');
   		loadRandomGif();
-  	}else{
+  	}else if(element == 'webbrowser'){
+  		this.echo('added web browser');
+  		createGifGrid();
+  	}
+  	else{
   		this.echo('what');
   	}
   },
+
 
 }, {greetings: 'Welcome. Type \'help\' for command list'});
 
@@ -61,6 +66,37 @@ function getRandomGifSource(callback) {
 }
 
 function getRandomPosition(max) {return Math.floor(Math.random() * max);}
+
+function createGifGrid() {
+    let divElement = document.getElementById('internet');
+    let gifElements = divElement.getElementsByTagName('img');
+
+    // Define the grid dimensions and spacing
+    const gridSize = Math.ceil(Math.sqrt(gifElements.length)); // Square grid
+    const spacing = 10; // Adjust as needed
+
+    let gridX = 0;
+    let gridY = 0;
+
+    for (let i = 0; i < gifElements.length; i++) {
+        const gif = gifElements[i];
+
+        // Calculate the position within the grid
+        const x = gridX * (gif.width + spacing);
+        const y = gridY * (gif.height + spacing);
+
+        // Set the position of the GIF
+        gif.style.left = x + 'px';
+        gif.style.top = y + 'px';
+
+        // Increment grid coordinates
+        gridX++;
+        if (gridX >= gridSize) {
+            gridX = 0;
+            gridY++;
+        }
+    }
+}
 
 
 //OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT

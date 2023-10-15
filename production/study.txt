@@ -89,12 +89,14 @@ ________________________________________________________
 Commands:
 
 help -- only shows all commands and references
+
 add computer (computer name) -- adds rotating spiral at random point
 add router -- makes spirals start to move around
 add server (server content) --creates a block of particles
 add webbrowser (name of web browser) --organizes content into boxes
 add web crawler (name) -- adds little bug crawler
 add intranet (name) -- adds nothing, but updates counter
+
 internet name (name) -- changes default internet name
 internet showkey --shows an image of the diagram key
 internet status -- shows counter for: internet name, computers, routers, servers, current webbrowser showing, all webbrowsers, web crawlers, intranets.
