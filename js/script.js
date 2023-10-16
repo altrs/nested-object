@@ -1,38 +1,191 @@
 // https://editor.p5js.org/jsy360/sketches/u5kNlGh0-
+let divElement;
+let computers = [];
+let routers = [];
+let servers = [];
+let webbrowers = [];
+let webcrawlers = [];
+let intranets = [];
+
+const spiralURLs = [
+  'assets/s1.png',
+  'assets/s2.png',
+  'assets/s3.png',
+  'assets/s4.png',
+  'assets/s5.png',
+  'assets/s6.png',
+];
 
 function show() {
     document.querySelectorAll('.inter').forEach(function(element) {element.style.display = "block";});
     document.getElementById('createInternet').style.display = "none";
+    divElement = document.getElementById('internet');
+	divWidth = divElement.offsetWidth;
+	divHeight = divElement.offsetHeight;
 }
 
+//TERMINAL COMMANDS TERMINAL COMMANDS TERMINAL COMMANDS TERMINAL COMMANDS 
+//TERMINAL COMMANDS TERMINAL COMMANDS TERMINAL COMMANDS TERMINAL COMMANDS 
+
 let serverOrganizer = false;
+let gifElements = [];
 
 $('#commandDiv').terminal({
 
-  hello: function(what) {
-  	this.echo('Hello, ' + what + '. Welcome to this terminal.');
+  help: function() {
+  	this.echo('COMMANDS:' +
+  				'\n help : see list of commands and about information' +
+  				'\n add computer [name] : adds computer with specific name' + 
+  				'\n add router [name] : adds router with specific name' +
+  				'\n add server [name] : adds server with specific name' +
+  				'\n add webbrowser [name] : adds webbrowser with specific name' +
+  				'\n add webcrawler [name] : adds webcrawler with specific name' +
+  				'\n add intranet [name] : adds intranet with specific name' +
+  				'\n internet name [name] : changes default internet name' +
+  				'\n internet showkey : shows visual key symbols for internet model' + 
+  				'\n internet status : shows internet element quantities' +
+  				'\n set webbrowser [name] : changes displayed webbrowser'
+  	);
   },
 
   add: function(element, name){
   	if(element == 'server'){
-  		this.echo('added server');
+  		this.echo('added server: ' + name);
   		loadRandomGif();
   	}else if(element == 'webbrowser'){
-  		this.echo('added web browser');
+  		this.echo('added web browser: ' + name);
   		browserCreated = true;
   		createGifGrid();
   		if(serverOrganizer == false){
   			serverOrganizer = true;
-  			setInterval(createGifGrid, 3000);
+  			setInterval(createGifGrid, 6000);
   		}
+  	}else if(element == 'computer'){
+  		this.echo('added computer: ' + name);
+  		addComputer();
+  	}
+  	else if(element == 'router'){
+  		this.echo('added router: ' + name);
+  		setInterval(jitterSpirals, 50);
+  	}
+  	else if(element == 'webcrawler'){
+  		this.echo('added webcrawler: ' + name);
+  		addCrawler();
+  	}
+  	else if(element == 'intranet'){
+  		this.echo('added intranet: ' + name);
   	}
   	else{
   		this.echo('what');
   	}
   },
 
+  set: function(webbrowser, name){
+  	this.echo('setting web browser');
+  	 shuffleArray(gifElements);
+  	 updateGifPositions();
+  },
 
 }, {greetings: 'Welcome. Type \'help\' for command list'});
+
+//SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS
+//SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS
+let spirals = [];
+
+function addComputer() {
+    let spiral = document.createElement('img');
+    spiral.className = 'spiral';
+
+    let randomSize = Math.random() * 70 + 40;
+    let randomIndex = Math.floor(Math.random() * spiralURLs.length);
+    spiral.src = spiralURLs[randomIndex];
+
+    spiral.style.position = 'absolute';
+    spiral.style.animation = 'rotate 5s linear infinite';
+    spiral.style.left = getRandomPosition(divWidth) + 'px';
+    spiral.style.top = getRandomPosition(divHeight) + 'px';
+    spiral.style.width = randomSize + 'px';
+    spiral.style.height = randomSize + 'px';
+    divElement.appendChild(spiral);
+
+    // Add the spiral element to the array
+    spirals.push(spiral);
+}
+
+function jitterSpirals() {
+    const jitterAmount = 10; // Adjust as needed
+
+    for (const spiral of spirals) {
+        let currentLeft = parseFloat(spiral.style.left);
+        let currentTop = parseFloat(spiral.style.top);
+
+        // Apply jitter effect by adjusting left and top properties randomly within the specified range
+        spiral.style.left = (currentLeft + getRandomJitter(jitterAmount)) + 'px';
+        spiral.style.top = (currentTop + getRandomJitter(jitterAmount)) + 'px';
+    }
+}
+
+function getRandomJitter(jitterAmount) {
+    return Math.random() * 2 * jitterAmount - jitterAmount;
+}
+
+//CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER
+//CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER CRAWLER
+let deg = 0;
+let x = 0;
+let y = 0;
+
+function addCrawler() {
+  let bug = document.createElement('img');
+  bug.className = 'bug';
+  bug.src = 'assets/bug.png';
+  bug.style.position = 'absolute';
+  bug.style.left = '0px';
+  bug.style.top = '0px';
+  bug.style.width = '10px';
+  bug.style.height = '10px';
+  divElement.appendChild(bug);
+
+  // Get the image's dimensions
+  const x = parseFloat(bug.style.width);
+  const y = parseFloat(bug.style.height);
+
+  // Set a random initial position within the div
+  bug.style.left = Math.floor(Math.random() * (divWidth - x)) + 'px';
+  bug.style.top = Math.floor(Math.random() * (divHeight - y)) + 'px';
+
+  // Function to move the image
+  function moveBug() {
+    // Calculate a random movement amount (adjust as needed)
+    const moveX = (Math.random() - 0.5) * 50;
+  	const moveY = (Math.random() - 0.5) * 50;
+
+    // Get the current position
+    let currentLeft = parseFloat(bug.style.left);
+    let currentTop = parseFloat(bug.style.top);
+
+    // Calculate the new position
+    let newLeft = currentLeft + moveX;
+    let newTop = currentTop + moveY;
+
+    // Check boundaries
+    if (newLeft < 0) {newLeft = 0;}
+    if (newTop < 0) {newTop = 0;}
+    if (newLeft + x > divWidth) {newLeft = divWidth - x;}
+    if (newTop + y > divHeight) {newTop = divHeight - y;}
+
+    // Update the image's position
+    bug.style.left = newLeft + 'px';
+    bug.style.top = newTop + 'px';
+  }
+
+  // Use setInterval to move the image at regular intervals
+	setInterval(moveBug, 300);
+	setInterval(function(){
+		deg = deg + 20;
+		bug.style.rotate = deg + "deg";
+	}, 300);
+}
 
 
 
@@ -44,12 +197,13 @@ let divHeight;
 let browserCreated = false;
 
 function loadRandomGif() {
-    let divElement = document.getElementById('internet');
-    divWidth = divElement.offsetWidth;
-    divHeight = divElement.offsetHeight;
+    // let divElement = document.getElementById('internet');
+    // divWidth = divElement.offsetWidth;
+    // divHeight = divElement.offsetHeight;
 
     let gif = document.createElement('img');
     getRandomGifSource((gifSrc) => {
+    	gif.className = 'gif';
         gif.src = gifSrc;
         gif.style.position = 'absolute';
         gif.style.left = getRandomPosition(divWidth) + 'px';
@@ -77,11 +231,11 @@ function getRandomPosition(max) {return Math.floor(Math.random() * max);}
 
 function createGifGrid() {
     let divElement = document.getElementById('internet');
-    let gifElements = divElement.getElementsByTagName('img');
+    // gifElements = divElement.getElementsByTagName('img');
+    gifElements = Array.from(divElement.getElementsByTagName('img'));
 
-    // Define the grid dimensions and spacing
-    const gridSize = Math.ceil(Math.sqrt(gifElements.length)); // Square grid
-    const spacing = 10; // Adjust as needed
+    const gridSize = Math.ceil(Math.sqrt(gifElements.length));
+    const spacing = 10;
 
     let gridX = 0;
     let gridY = 0;
@@ -106,6 +260,39 @@ function createGifGrid() {
     }
 }
 
+function updateGifPositions() {
+  const gridSize = Math.ceil(Math.sqrt(gifElements.length));
+  const spacing = 10;
+
+  let gridX = 0;
+  let gridY = 0;
+
+  for (let i = 0; i < gifElements.length; i++) {
+    const gif = gifElements[i];
+
+    // Calculate the position within the grid
+    const x = gridX * (gif.width + spacing);
+    const y = gridY * (gif.height + spacing);
+
+    // Set the position of the GIF
+    gif.style.left = x + 'px';
+    gif.style.top = y + 'px';
+
+    // Increment grid coordinates
+    gridX++;
+    if (gridX >= gridSize) {
+      gridX = 0;
+      gridY++;
+    }
+  }
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
 //OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT
 //OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT OBJECT

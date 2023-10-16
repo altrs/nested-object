@@ -53,19 +53,38 @@
     overflow: hidden;
 }
 
-#internet img{
-    -webkit-filter: brightness(180%); 
-    -webkit-filter: contrast(70%); 
+.gif{
+    -webkit-filter: brightness(140%); 
+    -webkit-filter: contrast(100%); 
     -webkit-filter: blur(.5px); 
-    filter: saturate(0.6);
+    filter: saturate(1);
+    filter: invert(.7);
+}
+
+.spiral{
+    -webkit-filter: unset;
+    filter: unset;
+    z-index: 30;
 }
 
 #commandDiv{
     height: 555px;
-    overflow-x: hidden;
+    overflow-x: auto;
     overflow-y: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 #output{
     height: 100px;
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
