@@ -108,18 +108,15 @@ function addComputer() {
     spiral.style.height = randomSize + 'px';
     divElement.appendChild(spiral);
 
-    // Add the spiral element to the array
     spirals.push(spiral);
 }
 
 function jitterSpirals() {
-    const jitterAmount = 10; // Adjust as needed
+    const jitterAmount = 10;
 
     for (const spiral of spirals) {
         let currentLeft = parseFloat(spiral.style.left);
         let currentTop = parseFloat(spiral.style.top);
-
-        // Apply jitter effect by adjusting left and top properties randomly within the specified range
         spiral.style.left = (currentLeft + getRandomJitter(jitterAmount)) + 'px';
         spiral.style.top = (currentTop + getRandomJitter(jitterAmount)) + 'px';
     }
@@ -146,40 +143,31 @@ function addCrawler() {
   bug.style.height = '10px';
   divElement.appendChild(bug);
 
-  // Get the image's dimensions
   const x = parseFloat(bug.style.width);
   const y = parseFloat(bug.style.height);
 
-  // Set a random initial position within the div
   bug.style.left = Math.floor(Math.random() * (divWidth - x)) + 'px';
   bug.style.top = Math.floor(Math.random() * (divHeight - y)) + 'px';
 
-  // Function to move the image
   function moveBug() {
-    // Calculate a random movement amount (adjust as needed)
     const moveX = (Math.random() - 0.5) * 50;
   	const moveY = (Math.random() - 0.5) * 50;
 
-    // Get the current position
     let currentLeft = parseFloat(bug.style.left);
     let currentTop = parseFloat(bug.style.top);
 
-    // Calculate the new position
     let newLeft = currentLeft + moveX;
     let newTop = currentTop + moveY;
 
-    // Check boundaries
     if (newLeft < 0) {newLeft = 0;}
     if (newTop < 0) {newTop = 0;}
     if (newLeft + x > divWidth) {newLeft = divWidth - x;}
     if (newTop + y > divHeight) {newTop = divHeight - y;}
 
-    // Update the image's position
     bug.style.left = newLeft + 'px';
     bug.style.top = newTop + 'px';
   }
 
-  // Use setInterval to move the image at regular intervals
 	setInterval(moveBug, 300);
 	setInterval(function(){
 		deg = deg + 20;
@@ -243,15 +231,12 @@ function createGifGrid() {
     for (let i = 0; i < gifElements.length; i++) {
         const gif = gifElements[i];
 
-        // Calculate the position within the grid
         const x = gridX * (gif.width + spacing);
         const y = gridY * (gif.height + spacing);
 
-        // Set the position of the GIF
         gif.style.left = x + 'px';
         gif.style.top = y + 'px';
 
-        // Increment grid coordinates
         gridX++;
         if (gridX >= gridSize) {
             gridX = 0;
@@ -270,15 +255,12 @@ function updateGifPositions() {
   for (let i = 0; i < gifElements.length; i++) {
     const gif = gifElements[i];
 
-    // Calculate the position within the grid
     const x = gridX * (gif.width + spacing);
     const y = gridY * (gif.height + spacing);
 
-    // Set the position of the GIF
     gif.style.left = x + 'px';
     gif.style.top = y + 'px';
 
-    // Increment grid coordinates
     gridX++;
     if (gridX >= gridSize) {
       gridX = 0;
