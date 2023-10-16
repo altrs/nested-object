@@ -102,6 +102,13 @@ internet showkey --shows an image of the diagram key
 internet status -- shows counter for: internet name, computers, routers, servers, current webbrowser showing, all webbrowsers, web crawlers, intranets.
 set webbrowser (browser name) -- changes webbrowser
 
+TO DO:
+X-create a key and show it in terminal
+-update element arrays within each command, display stats in status command
+-change update grid to set webbrowser command
+-increase update speed upon adding more bugs
+-add output text and random notifications!
+
 
 
 

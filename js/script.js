@@ -41,19 +41,18 @@ $('#commandDiv').terminal({
   				'\n add webbrowser [name] : adds webbrowser with specific name' +
   				'\n add webcrawler [name] : adds webcrawler with specific name' +
   				'\n add intranet [name] : adds intranet with specific name' +
-  				'\n internet name [name] : changes default internet name' +
-  				'\n internet showkey : shows visual key symbols for internet model' + 
-  				'\n internet status : shows internet element quantities' +
-  				'\n set webbrowser [name] : changes displayed webbrowser'
-  	);
+  				'\n internet status : shows internet element quantities'
+  			);
   },
 
   add: function(element, name){
   	if(element == 'server'){
   		this.echo('added server: ' + name);
+  		servers.push(this.name);
   		loadRandomGif();
   	}else if(element == 'webbrowser'){
   		this.echo('added web browser: ' + name);
+  		webbrowers.push(this.name);
   		browserCreated = true;
   		createGifGrid();
   		if(serverOrganizer == false){
@@ -61,18 +60,23 @@ $('#commandDiv').terminal({
   			setInterval(createGifGrid, 6000);
   		}
   	}else if(element == 'computer'){
+  		computers.push(this.name);
   		this.echo('added computer: ' + name);
   		addComputer();
   	}
   	else if(element == 'router'){
+  		routers.push(this.name);
   		this.echo('added router: ' + name);
   		setInterval(jitterSpirals, 50);
   	}
   	else if(element == 'webcrawler'){
+  		webcrawlers.push(this.name);
   		this.echo('added webcrawler: ' + name);
+  		setInterval(updateGifPositions, 5000);
   		addCrawler();
   	}
   	else if(element == 'intranet'){
+  		intranets.push(this.name);
   		this.echo('added intranet: ' + name);
   	}
   	else{
@@ -85,6 +89,18 @@ $('#commandDiv').terminal({
   	 shuffleArray(gifElements);
   	 updateGifPositions();
   },
+
+  internet: function(task){
+  	if(task == "status"){
+  		this.echo('Servers: ' + servers.length +
+  					'\nComputers: ' + computers.length +
+  					'\nRouters: ' + routers.length +
+  					'\nWebbrowers: ' + webbrowers.length +
+  					'\nWebcrawlers: ' + webcrawlers.length + 
+  					'\nIntranets: ' + intranets.length
+  					);
+  	}
+  }
 
 }, {greetings: 'Welcome. Type \'help\' for command list'});
 
