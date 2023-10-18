@@ -5,12 +5,6 @@
 // https://codepen.io/ronnidc/pen/WvZJBr
 
 let divElement;
-let computers = [];
-let routers = [];
-let servers = [];
-let webbrowers = [];
-let webcrawlers = [];
-let intranets = [];
 let cn = false;
 
 const spiralURLs = [
@@ -60,11 +54,11 @@ $('#commandDiv').terminal({
   	if(element == 'server'){
   		this.echo('added server: ' + name);
   		serverNotifications();
-  		servers.push(name);
+  		internet.servers.push(name);
   		loadRandomGif();
   	}else if(element == 'webbrowser'){
   		this.echo('added web browser: ' + name);
-  		webbrowers.push(name);
+  		internet.webbrowers.push(name);
   		browserCreated = true;
   		createGifGrid();
   		if(serverOrganizer == false){
@@ -72,27 +66,27 @@ $('#commandDiv').terminal({
   			setInterval(createGifGrid, 6000);
   		}
   	}else if(element == 'computer'){
-  		computers.push(name);
+  		internet.computers.push(name);
   		this.echo('added computer: ' + name);
   		// if(cn == false){compNotifications();}
   		compNotifications();
-  		console.log("computers: " + computers.length);
+  		console.log("computers: " + internet.computers.length);
   		addComputer();
   	}
   	else if(element == 'router'){
-  		routers.push(name);
+  		internet.routers.push(name);
   		this.echo('added router: ' + name);
   		setInterval(jitterSpirals, 50);
   	}
   	else if(element == 'webcrawler'){
-  		webcrawlers.push(name);
+  		internet.webcrawlers.push(name);
   		this.echo('added webcrawler: ' + name);
   		setInterval(updateGifPositions, 5000);
   		addCrawler();
   		setInterval(crawlerNotification, 2000);
   	}
   	else if(element == 'intranet'){
-  		intranets.push(name);
+  		internet.intranets.push(name);
   		this.echo('added intranet: ' + name);
   	}
   	else{
@@ -108,12 +102,12 @@ $('#commandDiv').terminal({
 
   internet: function(task){
   	if(task == "status"){
-  		this.echo('Servers: ' + servers.length +
-  					'\nComputers: ' + computers.length +
-  					'\nRouters: ' + routers.length +
-  					'\nWebbrowers: ' + webbrowers.length +
-  					'\nWebcrawlers: ' + webcrawlers.length + 
-  					'\nIntranets: ' + intranets.length
+  		this.echo('Servers: ' + internet.servers.length +
+  					'\nComputers: ' + internet.computers.length +
+  					'\nRouters: ' + internet.routers.length +
+  					'\nWebbrowers: ' + internet.webbrowers.length +
+  					'\nWebcrawlers: ' + internet.webcrawlers.length + 
+  					'\nIntranets: ' + internet.intranets.length
   					);
   	}
   }
@@ -128,7 +122,7 @@ function compNotifications () {
 	cn = true;
 	setInterval(async function () {
 		let output = document.createElement("p");
-		let rand = Math.floor(Math.random() * computers.length);
+		let rand = Math.floor(Math.random() * internet.computers.length);
 
 		var message = ""
 		const response = await fetch("assets/search.txt");
@@ -137,7 +131,7 @@ function compNotifications () {
 		const randomIndices = getRandomIndices(lines.length, 3);
 		console.log("LINE: " + lines[randomIndices[0]]);
 
-		output.innerHTML = computers[rand] + " is searching: " + lines[randomIndices[0]];
+		output.innerHTML = internet.computers[rand] + " is searching: " + lines[randomIndices[0]];
 		outputDiv.append(output);
 		outputDiv.scrollBy(0, 50);
 	  }, 5000);
@@ -146,10 +140,10 @@ function compNotifications () {
 function serverNotifications(){
 	let randTime = Math.floor(Math.random() * 3000) + 1000;
 	let output = document.createElement("p");
-	let rand = Math.floor(Math.random() * servers.length);
+	let rand = Math.floor(Math.random() * internet.servers.length);
 
 	setInterval(function(){
-		output.innerHTML = "content has been uploaded to " + servers[rand];
+		output.innerHTML = "content has been uploaded to " + internet.servers[rand];
 		outputDiv.append(output);
 		outputDiv.scrollBy(0, 50);
 	},randTime);
@@ -159,10 +153,10 @@ function serverNotifications(){
 function crawlerNotification(){
 	let randTime = Math.floor(Math.random() * 3000) + 1000;
 	let output = document.createElement("p");
-	let rand = Math.floor(Math.random() * webcrawlers.length);
+	let rand = Math.floor(Math.random() * internet.webcrawlers.length);
 
 	setInterval(function(){
-		output.innerHTML = "Webcrawler " + webcrawlers[rand] + " has indexed some pages";
+		output.innerHTML = "Webcrawler " + internet.webcrawlers[rand] + " has indexed some pages";
 		outputDiv.append(output);
 		outputDiv.scrollBy(0, 50);
 	},randTime);
@@ -373,10 +367,12 @@ const internet = {
 	internet_layers: ['Physical Layer', 'Data Link Layer', 'Network Layer', 'Transport Layer', 'Session Layer', 'Presentation Layer', 'Application Layer'],
 	internet_exchange_points: 600, //approximate apparently
 	switches: undefined, //a really big number that I'm unsure about
-	servers: [], //to be filled dynamically
-	routers:[],
 	computers: [],
-	packets: [],
+	routers: [],
+	servers: [],
+	webbrowers: [],
+	webcrawlers: [],
+	intranets: [],
 	users_worldwide: 5300000000,
 	amount_of_websites: 1130000000,
 	internet_birthday: 'January 1, 1983',
@@ -512,7 +508,7 @@ const internet = {
 
 };
 
-internet.addRouter('My Router', ['WAN3'], ['Eth3', 'Eth4'], true, true);
-internet.addServer('102.453.12', 'myweb', ['index.html', 'style.css']);
-internet.addComputer('102.453.12', '13.356.543');
+// internet.addRouter('My Router', ['WAN3'], ['Eth3', 'Eth4'], true, true);
+// internet.addServer('102.453.12', 'myweb', ['index.html', 'style.css']);
+// internet.addComputer('102.453.12', '13.356.543');
 
