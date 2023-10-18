@@ -1,4 +1,9 @@
 // https://editor.p5js.org/jsy360/sketches/u5kNlGh0-
+// https://itnext.io/how-to-create-interactive-terminal-like-website-888bb0972288
+// https://jsfiddle.net/tiffhockin/fesvq8u0/
+// https://stackoverflow.com/questions/13784686/moving-an-image-randomly-around-a-page
+// https://codepen.io/ronnidc/pen/WvZJBr
+
 let divElement;
 let computers = [];
 let routers = [];
@@ -163,6 +168,7 @@ function crawlerNotification(){
 	},randTime);
 }
 
+//old code, does more than it needs to
 function getRandomIndices(max, count) {
   const indices = [];
   while (indices.length < count) {
