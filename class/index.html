@@ -1,17 +1,50 @@
 <!DOCTYPE html> 
 <html> 
+<head>
+  
+<style>
+  #container{
+    position: absolute;
+    width: 400px;
+    margin-left: 35%;
+    margin-right: 50%;
+    margin-top: 50px;
+  }
+</style>
+
+</head>
 <body> 
 
-<video width="400" controls>
+<div id="container">
+
+<h1>POV You're at the library...</h1>
+<p>Play and adjust the volume to see what happens</p>
+
+<video width="400" controls onvolumechange="myFunction()" onplay="myFunction()">
   <source src="The Duck Song.mp4" type="video/mp4">
   Your browser does not support HTML video.
 </video>
 
-<p>
-Video courtesy of 
-<a href="https://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.
-</p>
+</div>
 
+<script>
+  
+function myFunction(){
+  console.log("librarian");
+  let mad = document.createElement("img");
+  mad.src = "mad.png";
+  mad.style.position = "absolute";
+  mad.style.width = "600px";
+  mad.style.marginTop = "30px";
+  mad.style.marginLeft = "30%";
+  document.body.append(mad);
+
+  setTimeout(function(){
+    mad.style.display = "none";
+  }, 1000);
+}
+
+</script>
 </body> 
 </html>
 
