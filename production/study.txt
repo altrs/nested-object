@@ -104,10 +104,10 @@ set webbrowser (browser name) -- changes webbrowser
 
 TO DO:
 X-create a key and show it in terminal
--update element arrays within each command, display stats in status command
+X-update element arrays within each command, display stats in status command
 -change update grid to set webbrowser command
 -increase update speed upon adding more bugs
--add output text and random notifications!
+main-add output text and random notifications!
 
 
 

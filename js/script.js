@@ -6,6 +6,7 @@ let servers = [];
 let webbrowers = [];
 let webcrawlers = [];
 let intranets = [];
+let cn = false;
 
 const spiralURLs = [
   'assets/s1.png',
@@ -41,18 +42,24 @@ $('#commandDiv').terminal({
   				'\n add webbrowser [name] : adds webbrowser with specific name' +
   				'\n add webcrawler [name] : adds webcrawler with specific name' +
   				'\n add intranet [name] : adds intranet with specific name' +
-  				'\n internet status : shows internet element quantities'
+  				'\n internet status : shows internet element quantities' +
+  				'\n\n Resources to learn about the internet: ' +
+  				'\n https://www.youtube.com/watch?v=7_LPdttKXPc' +
+				'\n https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo'+
+				'\n https://csperkins.org/research/index.html' + 
+				'\n https://do1.dr-chuck.net/net-intro/EN_us/net-intro.pdf'
   			);
   },
 
   add: function(element, name){
   	if(element == 'server'){
   		this.echo('added server: ' + name);
-  		servers.push(this.name);
+  		serverNotifications();
+  		servers.push(name);
   		loadRandomGif();
   	}else if(element == 'webbrowser'){
   		this.echo('added web browser: ' + name);
-  		webbrowers.push(this.name);
+  		webbrowers.push(name);
   		browserCreated = true;
   		createGifGrid();
   		if(serverOrganizer == false){
@@ -60,23 +67,27 @@ $('#commandDiv').terminal({
   			setInterval(createGifGrid, 6000);
   		}
   	}else if(element == 'computer'){
-  		computers.push(this.name);
+  		computers.push(name);
   		this.echo('added computer: ' + name);
+  		// if(cn == false){compNotifications();}
+  		compNotifications();
+  		console.log("computers: " + computers.length);
   		addComputer();
   	}
   	else if(element == 'router'){
-  		routers.push(this.name);
+  		routers.push(name);
   		this.echo('added router: ' + name);
   		setInterval(jitterSpirals, 50);
   	}
   	else if(element == 'webcrawler'){
-  		webcrawlers.push(this.name);
+  		webcrawlers.push(name);
   		this.echo('added webcrawler: ' + name);
   		setInterval(updateGifPositions, 5000);
   		addCrawler();
+  		setInterval(crawlerNotification, 2000);
   	}
   	else if(element == 'intranet'){
-  		intranets.push(this.name);
+  		intranets.push(name);
   		this.echo('added intranet: ' + name);
   	}
   	else{
@@ -103,6 +114,63 @@ $('#commandDiv').terminal({
   }
 
 }, {greetings: 'Welcome. Type \'help\' for command list'});
+
+//OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT
+//OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT OUTPUT
+let outputDiv = document.getElementById("output");
+
+function compNotifications () {
+	cn = true;
+	setInterval(async function () {
+		let output = document.createElement("p");
+		let rand = Math.floor(Math.random() * computers.length);
+
+		var message = ""
+		const response = await fetch("assets/search.txt");
+		const text = await response.text();
+		const lines = text.split('\n');
+		const randomIndices = getRandomIndices(lines.length, 3);
+		console.log("LINE: " + lines[randomIndices[0]]);
+
+		output.innerHTML = computers[rand] + " is searching: " + lines[randomIndices[0]];
+		outputDiv.append(output);
+		outputDiv.scrollBy(0, 50);
+	  }, 5000);
+}
+
+function serverNotifications(){
+	let randTime = Math.floor(Math.random() * 3000) + 1000;
+	let output = document.createElement("p");
+	let rand = Math.floor(Math.random() * servers.length);
+
+	setInterval(function(){
+		output.innerHTML = "content has been uploaded to " + servers[rand];
+		outputDiv.append(output);
+		outputDiv.scrollBy(0, 50);
+	},randTime);
+
+}
+
+function crawlerNotification(){
+	let randTime = Math.floor(Math.random() * 3000) + 1000;
+	let output = document.createElement("p");
+	let rand = Math.floor(Math.random() * webcrawlers.length);
+
+	setInterval(function(){
+		output.innerHTML = "Webcrawler " + webcrawlers[rand] + " has indexed some pages";
+		outputDiv.append(output);
+		outputDiv.scrollBy(0, 50);
+	},randTime);
+}
+
+function getRandomIndices(max, count) {
+  const indices = [];
+  while (indices.length < count) {
+    const randomIndex = Math.floor(Math.random() * max);
+    if (!indices.includes(randomIndex)) {indices.push(randomIndex);}
+  }
+  return indices;
+}
 
 //SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS
 //SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS SPIRALS

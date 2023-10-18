@@ -69,6 +69,7 @@
 
 #commandDiv{
     height: 555px;
+    width: 600px;
     overflow-x: auto;
     overflow-y: auto;
     word-wrap: break-word;
@@ -77,8 +78,11 @@
 
 #output{
     height: 100px;
+    overflow-x: auto;
+    overflow-y: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
-
 
 @keyframes rotate {
     0% {
