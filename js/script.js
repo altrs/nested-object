@@ -16,6 +16,12 @@ const spiralURLs = [
   'assets/s6.png',
 ];
 
+const date = new Date();
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+let currentDate = `${month}-${day}-${year}`;
+
 function show() {
     document.querySelectorAll('.inter').forEach(function(element) {element.style.display = "block";});
     document.getElementById('createInternet').style.display = "none";
@@ -42,6 +48,7 @@ $('#commandDiv').terminal({
   				'\n add webcrawler [name] : adds webcrawler with specific name' +
   				'\n add intranet [name] : adds intranet with specific name' +
   				'\n internet status : shows internet element quantities' +
+  				'\n internet compare : compares your internet to the real internet' +
   				'\n\n Resources to learn about the internet: ' +
   				'\n https://www.youtube.com/watch?v=7_LPdttKXPc' +
 				'\n https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo'+
@@ -109,6 +116,16 @@ $('#commandDiv').terminal({
   					'\nWebcrawlers: ' + internet.webcrawlers.length + 
   					'\nIntranets: ' + internet.intranets.length
   					);
+  	}
+  	else if(task == "compare"){
+  		let ranWebsites = internet.servers.length * (Math.floor(Math.random() * 3) + 2);
+  		this.echo('Your internet\'s user-amount: ' + internet.computers.length + '. The internet\'s user-amount: ' + internet.users_worldwide + '.' +
+  					'\nYour internet\'s birthday: ' + currentDate + '. The internet\'s birthday: 1-1-1983' +
+  					'\nYour internet\'s website-amount: ' + ranWebsites + '. The internet\'s site-amount: +1130000000.' +
+  					'\nYour internet\'s IXPs : ???. The internet\'s IXPs : ~600' +
+  					'\nYour internet\'s packets sent per minute, switches, ports, dns root servers, etc ... : ????. The internet\'s ???? \nQuantifying the internet is hard apparently! ...'
+  			);
+
   	}
   }
 
